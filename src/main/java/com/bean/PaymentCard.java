@@ -25,6 +25,16 @@ public class PaymentCard {
 	int expireYear;
 	@Column(nullable = true)
 	int cvv;
+	
+	@Column(nullable = true)
+	String nameOnTheCard;
+	
+	public String getNameOnTheCard() {
+		return nameOnTheCard;
+	}
+	public void setNameOnTheCard(String nameOnTheCard) {
+		this.nameOnTheCard = nameOnTheCard;
+	}
 	public PaymentCard() {
 		super();
 		// TODO Auto-generated constructor stub

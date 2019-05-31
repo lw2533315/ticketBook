@@ -36,6 +36,9 @@ public class MemberController {
 	@Autowired
 	TicketService ticketService;
 	
+	
+	
+	
 	@RequestMapping(value="/loginmatch", method = RequestMethod.GET)
 	public void loginMatch(HttpServletRequest req, HttpServletResponse resp) {
 		String email = req.getParameter("email");
@@ -189,6 +192,37 @@ public class MemberController {
 			e.printStackTrace();
 		}
 		
+		
+	}
+	
+	/*change default payment card*/
+	@RequestMapping(value="updateBankCard", method = RequestMethod.GET)
+	public String updateBankCard(HttpServletRequest req) {
+		String memberId = req.getParameter("memberId");
+		String cardNumber = req.getParameter("cardNumber");
+		String cardName = req.getParameter("cardName");
+		String month = req.getParameter("month");
+		String year = req.getParameter("year");
+		String cvv = req.getParameter("cvv");
+		PaymentCard pCard = new PaymentCard();
+		pCard.setCardNumber(cardNumber);
+		pCard.setCvv(Integer.parseInt(cvv));
+		pCard.setExpireMonth(Integer.parseInt(month));
+		pCard.setExpireYear(Integer.parseInt(year));
+		pCard.setNameOnTheCard(cardName);
+		pCard.setCardNumber(cardNumber);
+		ms.updateBankCard(Long.parseLong(memberId), pCard);
+		return "accountinfo";
+	}
+	
+	
+	@RequestMapping(value= "bankCard", method= RequestMethod.GET)
+	public ModelAndView toBankCard(HttpServletRequest req) {
+		String memberId = req.getParameter("memberId");
+		System.out.println("memberc: tobankcard memberId " + memberId );
+		ModelAndView mav = new ModelAndView("updateBankCard");
+		mav.addObject("memberId", memberId);
+		return mav;
 		
 	}
 	

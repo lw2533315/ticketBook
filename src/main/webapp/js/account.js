@@ -55,12 +55,9 @@ $(function(){
 	})
 	
 	
-	let cardNumber = $("#passCardNumber").val().substring(12,16);
-	let cardNewNumber = "************" + cardNumber;
-				console.log("card number" + cardNewNumber);
+	
 	$(".ticketcancel").change(function(){
 		let id = $(this).val();
-		console.log(id + "!!!!!!!");
 		if(confirm("you could get refund of 90% of ticket price, continue ?")){
 			$.get("returnTicket?id="+id, function(back){
 				console.log("account js test")
@@ -78,6 +75,8 @@ $(function(){
 	})
 	
 	
+	
+	//decorate update botton
 	$("#updateEmail, #updatePhone, #updatePassword").mouseenter(function(){
 		$(this).css("background", "#6fd508")
 		$(this).css("color" ,"white")
@@ -87,6 +86,19 @@ $(function(){
 	$("#updateEmail, #updatePhone, #updatePassword").mouseleave(function(){
 		$(this).css("background", "white")
 		$(this).css("color","black")
+	})
+	
+	
+	
+	//decorate the hover
+	$("#cardChange").mouseenter(function(){
+		console.log("get event")
+		$(this).attr("style", "color:#6fd508 !important; font-size:24px" )
+	})
+	
+	$("#cardChange").mouseleave(function(){
+		console.log("get event")
+		$(this).attr("style", "color:black !important; font-size:16px" )
 	})
 
 

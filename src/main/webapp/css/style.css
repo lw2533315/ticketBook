@@ -114,6 +114,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	background: rgba(0, 0, 0, 0.57);
 }
 
+.memberColor{
+	color: rgba(50,50,120,90);
+	font-size: 16px;
+	font-weight: 10px;
+}
+
+.checkoutcard1{
+    margin-left: 500px!important;
+    width: 500px;
+}
+
 .dptport1{
 	width: 33%;
 }

@@ -131,24 +131,26 @@ boolean  compareTime(String s) {
     </div>
 	<!--//header-->
 	<!-- banner-bottom -->
-	<div class="banner-bottom">
+	<div class="banner">
 		<!-- container -->
 		<div class="container">
 			<div class="faqs-top-grids">
 				<div class="book-grids">
 					<div class="col-md-6-account book-left">
 						
-						<div class="book-left-form">
+						<div class="book-left-form memberColor">
 							
 								<h3><b>Member Id: </b></h3>
-								<span id ="id">${member.memberId}</span><br>
+								<span  id ="id"><strong><i>${member.memberId}</i></strong></span><br>
 								<h3><b>Name</b></h3>
-								<span>${member.firstName} ${member.lastName}</span><br>
+								<span><strong><i>${member.firstName} ${member.lastName}</i></strong></span><br>
 								<h3><b>Phone Number</b></h3>
-								<span id="changedPhone">${member.phone}</span><br>
+								<span id="changedPhone"><strong><i>${member.phone}</i></strong></span><br>
 								<h3><b>Email Address</b></h3>
-								<span id="changedEmail">${member.email}</span><br>
-								
+								<span id="changedEmail"><strong><i>${member.email}</i></strong></span><br>
+								<br>
+								<%String url = "bankCard?memberId=" + ((Member)request.getAttribute("member")).getMemberId(); %>
+								<strong><i><u><a  id="cardChange" style="font-size: 16px; color:blue ;" href='<%=url%>'>Update Bank Card</a></u></i></strong>
 								
 						
 						</div>
