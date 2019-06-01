@@ -56,18 +56,15 @@
 </head>
 <body>
 	<%!List<Map.Entry<List<Flight>, Integer>> lines = new ArrayList();
-	String toCity = "";
 	%>
 	<%
 		lines = (List<Map.Entry<List<Flight>, Integer>>) request.getAttribute("lines");
 	
-		toCity = (String) request.getAttribute("flightTo");
-		if(session.getAttribute("name") == null){	
+	   if(session.getAttribute("name") == null){   //set flag for jump button if null means not login now
 	%>
-	
-	<input type="hidden"  value="yes" id="signinFlag"/>
-	<%}else{ %>
-	<input type="hidden"  value="no" id="signinFlag"/>
+	<input type="hidden" id="signinFlag" value="yes">
+	<%}else {%>
+	<input type="hidden" id="signinFlag" value="no">
 	<%} %>
 	<input type="hidden" id="passValue" value="${rtnTime}" />
 	<!--header-->
@@ -180,7 +177,7 @@
 					<div class="box1">
 						<h2 class="top">Flight Info</h2>
 						
-						<span><b  id="diplayDay">${dptTime}</b></span>
+						<span><b  id="diplayDay">Go: ${dptTime}</b></span>  <span style = "float:right"><b id="diplayBackDay">Back: ${rtnTime }</b></span>
 						<div class="div_pad_1" id="tableParent">
 							<%
 								for (int i = 0; i < lines.size(); i++) {
@@ -241,9 +238,6 @@
 									<td>$<%=price%></td>
 								</tr>
 
-
-							
-
 							<%
 								}
 							%>
@@ -275,13 +269,8 @@
 
 							<div id="horizontalTab"
 								style="display: block; width: 100%; margin: 0px;">
-								<ul class="resp-tabs-list">
-									<li class="resp-tab-item" aria-controls="tab_item-0" role="tab"><span
-										id="roundtrip">Round</span></li>
-									<li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span
-										id="onetrip">One way</span></li>
-
-								</ul>
+								<span id="tripType" style = "font-size: 20px; font-weight:800">one Trip</span>
+						 
 								<!---->
 								<div class="resp-tabs-container">
 									<div class="tab-1" aria-labelledby="tab_item-0">
@@ -300,7 +289,7 @@
 
 																			<span class="glyphicon glyphicon-map-marker"
 																				aria-hidden="true"></span> <input
-																				value="<%=request.getAttribute("flightFrom")%>"
+																				value="${flightFrom }"
 																				type="text" placeholder="Type Departure City"
 																				class="typeahead1 input-md form-control tt-input"
 																				id="flightFrom1"
@@ -314,7 +303,7 @@
 
 																			<span class="glyphicon glyphicon-map-marker"
 																				aria-hidden="true"></span> <input
-																				value="<%=toCity%>" type="text"
+																				value="${flightTo }" type="text"
 																				placeholder="Type Destination City"
 																				class="typeahead1 input-md form-control tt-input"
 																				id="flightTo1"
@@ -436,6 +425,7 @@
 	<script type="text/javascript" src="js/index.js"></script>
 	<script type="text/javascript" src="js/login.js"></script>
 	<script type="text/javascript" src="js/filter.js"></script>
+	<script type="text/javascript" src="js/booking.js"></script>
 
 </body>
 </html>

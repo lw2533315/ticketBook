@@ -1,14 +1,85 @@
-/**
- * 
- */
+
+
+
+
 $(function(){
 	//update the rtntime by the filled dptTime11
 	let time = $("#dptTime1").val();
 	$("#rtnTime1").attr("min", $("#dptTime1").val() );
 	
 	
-	//dynamic insert a table to booking page finish ajax
-	$("#flightFrom1， #flightTo1, #dptTime1, #rtnTime1, #airline1, #stops1, #carbinLevel1").off().change(function(){
+	//listen many filter
+	$(" #dptTime1, #rtnTime1, #airline1, #stops1, #carbinLevel1").off().on("change", filter)
+	
+	
+	//listen to flight from
+	$("#flightFrom1").keyup(function(event){
+		  if(event.keyCode ==13){
+		    filter();
+		  }
+	});
+	
+	//listen to flight from
+	$("#flightTo1").keyup(function(event){
+		  if(event.keyCode ==13){
+		    filter();
+		  }
+	});
+	
+	
+})
+
+//jump with flights serial ids
+$(document). on('click',".button1", function(){
+		//not signup , jump back origin
+		if($("#signinFlag").val() === "yes"){
+			window.location.href="home";
+		}else{
+			let ary = [];
+			let className = $(this).attr("id");
+			$("."+className).each(function(){
+				
+				ary.push($(this).val());
+			})
+			
+			let url = "jumpToTicket?param0="+ary.length ;
+			let i = 0;
+			for(; i < ary.length; i++){
+				url += ("&param" + (i+1) + "=" + ary[i]);
+			}
+			
+			//add carbin level info
+			url += ("&param"+(i+1) + "="+ $("#carbinLevel1").val());
+			
+			
+			//add check one trip or round trip
+			if ($("#rtnTime1").val() != ""){
+				url += ("&param"+(i+2) + "=1");
+			}else{
+				url += ("&param"+(i+2) + "=0");
+			}
+			
+			//add dptcity
+			url += ("&param"+(i+3) + "="+ unescape($("#flightFrom1").val()));
+			
+			//add rtncity
+			url += ("&param"+(i+4) + "="+ $("#flightTo1").val());
+			
+			//add dpttime
+			url += ("&param"+(i+5) + "="+ $("#dptTime1").val());
+			
+			//add rtntime
+			url += ("&param"+(i+6) + "="+ $("#rtnTime1").val());
+			
+			
+			window.location.href=url;
+		}
+})
+
+
+
+function filter(){
+		console.log("change")
 		let cityFrom = $("#flightFrom1").val();
 		let cityTo = $("#flightTo1").val();
 		let dptTime = $("#dptTime1").val();
@@ -30,11 +101,10 @@ $(function(){
 			"stops" : stops,
 			"carbinlevel" : carbinLevel
 		}, function(back){
-//			console.lgo(back);
 			var lines = JSON.parse(back);
-//			console.log("filter ajax size is " + line.length)
 			$("#tableParent").empty();
 			$("#diplayDay").text(dptTime)   //update the time of the 
+			$("#displayBackDay").text(rtnTime);
 			
 			var div = $("#tableParent");
 			$.each(lines, function(i, line) {  // index  : (flights: price)
@@ -44,7 +114,6 @@ $(function(){
 				let title = "<table id='flight" + i + "' class='tickettable' ></table>"  ;
 				div.append(title);
 				let totalPrice = 0;		
-				console.log("new line")
 					$.each(line, function(j, flight){   //index: flight
 						
 						let price =0;
@@ -79,7 +148,6 @@ $(function(){
 							availableSeats = Math.min(availableSeats, flight.busSeats -flight.reservedBusSeats);
 						}
 					    // table name
-						console.log(dptCity);
 						let outTable = $("#flight"+i)
 						let id="<input type='hidden' class='id"+i+"' value='"+serialId+"'/>"
 						outTable.append(id);
@@ -87,25 +155,8 @@ $(function(){
 						outTable.append(row1);
 						let row2 = "<tr><td><table style = 'text-align : left' class='innertable ticketinfo' id='inflight"+i +"" + j+ "'><tr><td class='dpttime'>" +dptTime +"</td><td styles='text-align: left'></td><td class='arvtime'>" + arvTime+ "</td></tr><tr><td class='dptport'>" +dptBrief +"</td><td>To</td><td class='arvport'>" + arvBrief+ "</td></tr><tr><td class='dptcity'>" +dptCity +"</td><td></td><td class='arvtime'>" + arvCity+ "</td></tr></table></td><td>"+price+"</td></tr>"
 						outTable.append(row2);
-						//can not insert seperate point ,dynamic insert have lots of wired problem
-//						let row2 = "<tr><td><table style = 'text-align : left' class='innertable ticketinfo' id='inflight"+i +"" + j+ "'></table></td><td>"+price+"</td></tr>"
-//						outTable.append(row2);
-//						let inTable = outTable.find("table"); 
-//						console.log("~~~~~~~~~~~~~~");
-//						let innerRow1 = "<tr><td class='dpttime'>" +dptTime +"</td><td styles='text-align: left'></td><td class='arvtime'>" + arvTime+ "</td></tr>";
-//						inTable.append(innerRow1);
-//						let innerRow2 = "<tr><td class='dptport'>" +dptBrief +"</td><td>To</td><td class='arvport'>" + arvBrief+ "</td></tr>";
-//						inTable.append(innerRow2);
-//						let innerRow3 = "<tr><td class='dptcity'>" +dptCity +"</td><td></td><td class='arvtime'>" + arvCity+ "</td></tr>";
-//						inTable.append(innerRow3);
-						
 					})
 					
-					
-					
-					
-				
-				
 					
 					let outRow	
 					if(carbinLevel.toLowerCase() == "economy"){
@@ -132,66 +183,7 @@ $(function(){
 		
 		})	
 		
-	})
-	
-	
-})
-
-//jump with flights serial ids
-$(document). on('click',".button1", function(){
-		console.log("in button 1 js")
-		//not signup , jump back origin
-		if($("#signinFlag").val() === "yes"){
-			window.location.href="home";
-		}else{
-			console.log("test jump booking")
-			let ary = [];
-			let className = $(this).attr("id");
-			$("."+className).each(function(){
-				
-				ary.push($(this).val());
-			})
-			
-			let url = "jumpToTicket?param0="+ary.length ;
-			let i = 0;
-			for(; i < ary.length; i++){
-				console.log(ary[i]);
-				url += ("&param" + (i+1) + "=" + ary[i]);
-			}
-			
-			//add carbin level info
-			url += ("&param"+(i+1) + "="+ $("#carbinLevel1").val());
-			
-			
-			//add check one trip or round trip
-			if ($("#rtnTime1").val() != ""){
-				url += ("&param"+(i+2) + "=1");
-			}else{
-				url += ("&param"+(i+2) + "=0");
-			}
-			
-			//add dptcity
-			url += ("&param"+(i+3) + "="+ unescape($("#flightFrom1").val()));
-			
-			//add rtncity
-			url += ("&param"+(i+4) + "="+ $("#flightTo1").val());
-			
-			//add dpttime
-			url += ("&param"+(i+5) + "="+ $("#dptTime1").val());
-			
-			//add rtntime
-			url += ("&param"+(i+6) + "="+ $("#rtnTime1").val());
-			
-			
-			
-			
-			
-			/*need find dpt city, rtn city, dpt time, rtn time*/
-			
-			
-			window.location.href=url;
-		}
-	})
+}
 
 
 

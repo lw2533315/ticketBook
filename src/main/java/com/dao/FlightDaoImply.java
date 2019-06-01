@@ -1,10 +1,8 @@
 package com.dao;
 
-import java.nio.channels.SeekableByteChannel;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.transaction.Transactional;
 
 import org.hibernate.Query;
 import org.hibernate.Session;

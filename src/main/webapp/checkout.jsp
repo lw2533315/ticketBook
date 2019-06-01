@@ -50,8 +50,8 @@
 <body>
     <%!List<Flight> line = new ArrayList<Flight>(); %>
     
-    <input type = "hidden" value='${sessionScope.name}' id="passFirstName"/>
-    <input type = "hidden" value='${sessionScope.lastName}' id="passLastName"/>
+   <!-- <input type = "hidden" value='${sessionScope.name}' id="passFirstName"/>
+    <input type = "hidden" value='${sessionScope.lastName}' id="passLastName"/> --> 
 	<!--header-->
 	<div class="header">
 		<div class="container">
@@ -105,7 +105,7 @@
 							<br>
 							 <label
 								for="checkbox"><input type="checkbox" id="defaultCheckbox">
-								<i>User Default card:</i></label>
+								<i>User Default card:</i> <span class="error" id="defaultCard"></span></label>
 							<form  class= "formValidate" action="confirm" method="post">
 								<p>Card Number</p>
 								<input size="25" type="text" id="cardNumber" name="cardNumber">

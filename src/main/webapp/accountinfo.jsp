@@ -131,7 +131,27 @@ boolean  compareTime(String s) {
     </div>
 	<!--//header-->
 	<!-- banner-bottom -->
-	<div class="banner">
+	<div class="banner1">
+	<div id="light" class="white_content">
+	   <img src="images/card.jpg" alt="no picture">
+	   <form  class= "formValidate" action="index.jsp" method="get">
+                                <input type="hidden"  value="${member.memberId}" name="memberId" id="memberId"/>
+                                <label>Card Number</label><br>
+                                <input size="25" type="text" id="cardNumber" name="cardNumber"><br>
+                                <label>Name on the Card</label><br>
+                                <input size="25" type="text" id="cardName" name="cardName"><br>
+                                <label>Expiration Day</label><br>
+                                <input type="number" min="1" max="12"  id="month" name="month"> 
+                                <input type="number" min="2019" max="2049" id="year" name="year"><br>
+                                <label>CVV</label><br>
+                                <input type="text" size="10" id="cvv" name = "cvv"><br> <br> 
+                                 <input type="submit"  style="height: 33px; width: 76px" 
+                                    value="update" id="updateCard">
+                                 <input type="submit"  style="height: 33px; width: 76px" 
+                                    value="Cancel" id="cancelCard"> <span id="emptyInput" class="error"></span>
+                            </form>
+	
+	</div>
 		<!-- container -->
 		<div class="container">
 			<div class="faqs-top-grids">
@@ -149,8 +169,9 @@ boolean  compareTime(String s) {
 								<h3><b>Email Address</b></h3>
 								<span id="changedEmail"><strong><i>${member.email}</i></strong></span><br>
 								<br>
-								<%String url = "bankCard?memberId=" + ((Member)request.getAttribute("member")).getMemberId(); %>
-								<strong><i><u><a  id="cardChange" style="font-size: 16px; color:blue ;" href='<%=url%>'>Update Bank Card</a></u></i></strong>
+								
+								<span><strong><i>Card Number: *${cardNumber }</i></strong></span><br>
+								<strong><i><u><a  id="cardChange" style="font-size: 16px; color:blue ;" href=''>Update Bank Card</a></u></i></strong>
 								
 						
 						</div>
@@ -158,22 +179,13 @@ boolean  compareTime(String s) {
 					<div class="col-md-6-account">
 						<div class="book-left-info">
 							<h4><strong>Update Email</strong></h4>
-							
-							<script type="text/javascript">
-						     
-							
-							
-							</script>
-							
-							
 							<form  class="formValidate1" 
                                 method="get">
-								<input type="email" placeholder="email" name = "email"  id="email">
-								<br><input  type="submit" value="update" id="updateEmail">
+								<input type="email" placeholder="email" name="email" id="email">
+                                <br><input type="submit" value="update"  id="updateEmail" >
 								
 							
 							</form>
-							<div class="error"></div>
 							<br>
 						</div>
 						<div class="book-left-info">

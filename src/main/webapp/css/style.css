@@ -40,6 +40,21 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	
 }
 
+ #light { 
+            display: none ; 
+            position: absolute; 
+            top: 25%; 
+            left: 25%; 
+            width: 30%; 
+            height:45%; 
+            padding: 20px; 
+            border: 5px solid orange; 
+            background-color: rgba(0,0,0,0.37); 
+            color: #CCFFFF;
+            z-index:2; 
+            overflow: auto; 
+        } 
+
 .overflowDiv{
 	overflow: auto;
 	height:300px;

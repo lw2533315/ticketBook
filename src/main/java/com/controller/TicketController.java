@@ -126,6 +126,7 @@ public class TicketController {
 	public ModelAndView ticketConfirm(HttpServletRequest req, HttpServletResponse resp) {
 		String updateBankCard = req.getParameter("saveDefault");
 		String cardNumber = req.getParameter("cardNumber");
+		String cardName = req.getParameter("cardName");
 		String expireYear = req.getParameter("year");
 		String expireMonth = req.getParameter("month");
 		String cvv = req.getParameter("cvv");
@@ -140,6 +141,7 @@ public class TicketController {
 		//update paymentcard info in member table
 		if(updateBankCard != null && updateBankCard.equals("on")) {
 			PaymentCard pCard = new PaymentCard();
+			pCard.setNameOnTheCard(cardName);
 			pCard.setCardNumber(cardNumber);
 			pCard.setCvv(Integer.parseInt(cvv));
 			pCard.setExpireMonth(Integer.parseInt(expireMonth));

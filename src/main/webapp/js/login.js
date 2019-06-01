@@ -26,13 +26,17 @@ $.validator.addMethod("PASSWORD", function (value, element) {
     return this.optional(element) || /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,16}$/i.test(value);
 }, "6-16 uppercase letters, lowercase letters and at least one number."); 
 
+//check confirmpassword
+$.validator.addMethod("CONFIRMPASSWORD", function (value, element, param) {
+    return this.optional(element) || value == $(param).val()
+},"two times passwords dose not match ");
 
 //check letters
 $.validator.addMethod("lettersonly", function(value, element) {
 	  return this.optional(element) || /^[a-zA-Z]+$/i.test(value);
 	}, "Letters only please"); 
 
-
+//check letters and space
 $.validator.addMethod( "alphaAndspace", function( value, element ) {
 	return this.optional( element ) || /^[a-zA-Z\s]*$/.test( value );
 }, "character and whitespace only" );
@@ -74,48 +78,55 @@ $.validator.addMethod("cvvCheck", function(value, element) {
 $(function(){
 	console.log("test");
 	$(".formValidate").validate({
-//		errorElement: 'span',
-//		   errorPlacement: function(error, element) {
-//		           error.appendTo(element.parent());
-//		   },
+
 		rules:{
 			
 			email:{
 				required:true,
 				email: true
-				
 			},
+			
 			password:{
 				required: true,
-				
 				PASSWORD: true
 			},
+			
+			password:{
+				required: true,
+				PASSWORD: true
+			},
+			
+			confirmpassword:{
+				PASSWORD: true,
+				CONFIRMPASSWORD: '#password1',
+			},
+			
 			firstName:{
 				required:true,
 				lettersonly:true,
 			},
+			
 			lastName:{
 				required:true,
 				lettersonly:true,
 			},
+			
 			phone:{
 				required:true,
 				phonenumber:true,
-				
 			},
-			
 			
 			age:{
 				required:true,
 				phonenumber:true,
 				agecheck: true,
-				
 			},
+			
 			cardNumber:{
 				required:true,
 				bankCard: true,
-				
 			},
+			
 			cardName:{
 				required:true,
 				alphaAndspace: true,
@@ -126,18 +137,16 @@ $(function(){
 				monthCheck: true,
 				
 			},
+			
 			year:{
 				required:true,
 				yearCheck:true,
-				
 			},
 			
 			cvv:{
 				required:true,
 				cvvCheck:true,
-				
 			}
-			
 		}
 	
 	
@@ -179,8 +188,6 @@ $(function(){
 				PASSWORD: true
 			}
 		},
-//		errorElement : 'div',
-//	    errorLabelContainer: '.errorTxt'
 	})
 	
 	$(".formValidate3").validate({
@@ -194,11 +201,13 @@ $(function(){
 				PASSWORD: true
 			}
 		},
-//		errorElement : 'div',
-//	    errorLabelContainer: '.errorTxt'
 	})
 	
-	
+	$("#register").click(function(){
+		console.log($("#password1").val())
+		
+		
+	})
 	
 	
 	
@@ -252,7 +261,7 @@ $(function(){
 		$(this).css("color", "white");
 	})
 	$(".formButton").mouseleave(function(){
-		$(this).css("background", "white");
+		$(this).css("background", "#DDDDDD");
 		$(this).css("color", "black");
 	})
 	

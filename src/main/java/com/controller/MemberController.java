@@ -102,6 +102,8 @@ public class MemberController {
 	public ModelAndView createAccount(@ModelAttribute("member") Member member, HttpServletRequest req, HttpServletResponse resp) {
 		String firstName = member.getFirstName();
 		
+		
+		//save to database
 		if(ms.signup(member)) {
 			HttpSession session = req.getSession();
 			long id = ms.getId(member);
@@ -170,6 +172,7 @@ public class MemberController {
 		Member member = ms.getMemberById(serialId);
 		ModelAndView mav = new ModelAndView("accountinfo");
 		mav.addObject("member", member);
+		mav.addObject("cardNumber", member.getCard().getCardNumber().substring(12,16));
 		
 		//get a linkedHashMap
 		Map<FlightLine, List<Ticket>> recorder = ms.sortFlightLineByTime(member.getMemberId());
@@ -197,7 +200,7 @@ public class MemberController {
 	
 	/*change default payment card*/
 	@RequestMapping(value="updateBankCard", method = RequestMethod.GET)
-	public String updateBankCard(HttpServletRequest req) {
+	public void updateBankCard(HttpServletRequest req, HttpServletResponse resp) {
 		String memberId = req.getParameter("memberId");
 		String cardNumber = req.getParameter("cardNumber");
 		String cardName = req.getParameter("cardName");
@@ -212,7 +215,12 @@ public class MemberController {
 		pCard.setNameOnTheCard(cardName);
 		pCard.setCardNumber(cardNumber);
 		ms.updateBankCard(Long.parseLong(memberId), pCard);
-		return "accountinfo";
+		try {
+			resp.getWriter().write("");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	

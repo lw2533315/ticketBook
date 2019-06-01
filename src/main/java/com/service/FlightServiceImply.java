@@ -88,8 +88,6 @@ public class FlightServiceImply implements FlightService {
 				for (Map.Entry<List<Flight>, Integer> m2 : linesWithPrice2.entrySet()) {  //back
 					List<Flight> temp = new ArrayList<Flight>(m1.getKey().size() + m2.getKey().size());
 					if(compareTwoTime(m1.getKey().get(m1.getKey().size() - 1).getArriveTime(),m2.getKey().get(0).getDepartureTime())) {
-						System.out.println("go" + m1.getKey().get(m1.getKey().size() - 1).getArriveTime());
-						System.out.println("back" + m2.getKey().get(0).getDepartureTime());
 						temp.addAll(m1.getKey());
 						temp.addAll(m2.getKey());
 						twoLinesWithPrice.put(temp, (int) ((m1.getValue() + m2.getValue()) * .8));
@@ -364,6 +362,14 @@ public class FlightServiceImply implements FlightService {
 
 		Map<List<Flight>, Integer> linesWithPrice2 = new HashMap<List<Flight>, Integer>(); // save one trip suitable
 																							// <Flights, price> pair
+		/***/
+		// combine two tipes together and give a 80% discount
+					
+		
+		
+		/**/
+		
+		
 		if (rtnTime != "") {
 			// back trip
 			List<LinkedHashSet<Long>> backTrip = getAllFilghtId(toCity, dptCity, rtnTime, map, stopTime);
@@ -382,16 +388,22 @@ public class FlightServiceImply implements FlightService {
 			}
 
 			// combine two tipes together and give a 90% discount
+					
 			Map<List<Flight>, Integer> twoLinesWithPrice = new HashMap<List<Flight>, Integer>();
-			for (Map.Entry<List<Flight>, Integer> m1 : linesWithPrice.entrySet()) {
-				for (Map.Entry<List<Flight>, Integer> m2 : linesWithPrice2.entrySet()) {
+			for (Map.Entry<List<Flight>, Integer> m1 : linesWithPrice.entrySet()) { //go
+				for (Map.Entry<List<Flight>, Integer> m2 : linesWithPrice2.entrySet()) {  //back
 					List<Flight> temp = new ArrayList<Flight>(m1.getKey().size() + m2.getKey().size());
-					temp.addAll(m1.getKey());
-					temp.addAll(m2.getKey());
-					twoLinesWithPrice.put(temp, (int) ((m1.getValue() + m2.getValue()) * .9));
-
+					if(compareTwoTime(m1.getKey().get(m1.getKey().size() - 1).getArriveTime(),m2.getKey().get(0).getDepartureTime())) {
+						temp.addAll(m1.getKey());
+						temp.addAll(m2.getKey());
+						twoLinesWithPrice.put(temp, (int) ((m1.getValue() + m2.getValue()) * .8));
+					}
 				}
 			}
+			
+			
+			
+			
 			// need sort form cheapest to most expensive
 			List<Map.Entry<List<Flight>, Integer>> sortMap = new ArrayList<Map.Entry<List<Flight>, Integer>>(
 					twoLinesWithPrice.entrySet());

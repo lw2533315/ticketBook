@@ -25,6 +25,8 @@
 <link type="text/css" rel="stylesheet" href="css/main.css" />
 <!-- js -->
 <script src="js/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 <!-- <script src="js/modernizr.custom.js"></script> -->
 <!-- //js -->
 <!-- fonts -->
@@ -93,9 +95,9 @@
 													name="email" id="email">
 											</fieldset>
 											<fieldset>
-												<label for="password">Password</label> <input
-													type="password" name="password" id="password"> <input
-													type="hidden" name="curpage" value="home">
+												<label for="password">Password</label>
+												 <input  type="password" name="password" id="password">
+												 <input type = "hidden" name="curpage" value="home">
 											</fieldset>
 											<input type="submit" id="login" value="Sign in">
 
@@ -128,7 +130,7 @@
 		<div class="container">
 			<div class="faqs-top-grids">
 				<div class="book-grids">
-					<div class="col-md-6 book-left">
+					<div class="col-md-6-account book-left">
 					    <c:if test="${signup == false}" >
 					    <span class = "error"><strong>This person Info Exists</strong></span>
 					    </c:if>
@@ -138,29 +140,28 @@
 						<div class="book-left-form">
 						 
 							<form:form action="savesignup" modelAttribute="member"
-								method="post">
+								method="post" class="formValidate">
 								<p>First Name</p>
-								 <form:input type="text" path="firstName" placeholder="First name *" />
+								 <form:input type="text" path="firstName" placeholder="" name="firstName"/>
 								<p>Last Name</p>
-								<form:input type="text" value=""  path="lastName" />
+								<form:input type="text" value=""  path="lastName"  name="lastName" />
 								<p>Phone Number</p>
-								<form:input type="text" value=""  path="phone" />
+								<form:input type="text" value=""  path="phone" name="phone"/>
 								<p>Email Address</p>
-								<form:input type="email" value="" path="email" />
+								<form:input   type="text" value="" path="email" name="email"/>
 								
 								
 								<br>
 								<p>Password</p>
-								<input type="password" name="pwd" />
+								<form:input type="password" path ="password"  name="password" id="password1"/>
 								<p>Confirm Password</p>
-								<form:input type="password" name="password" id="password"
-									path="password" />
+								<input type="password"  name="confirmpassword" />
 
 								<input type="submit" id="register" value="Register"/>
 							</form:form>
 						</div>
 					</div>
-					<div class="col-md-6 book-left book-right">
+					<div class="col-md-6-account book-left book-right">
 						<img src="images/bgpart.png" alt="No Images" />
 					</div>
 

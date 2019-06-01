@@ -2,22 +2,15 @@
  * 
  */
 
-function fillCardInfo(cardNumber, firstName, lastName, expireYear, expireMonth, cvv ){
-	if(cardNumber === ''){
-		$("#cardNumber").val("");
-		$("#cardName").val("");
-		$("#expireYear").val("")
-		$("#expireMonth").val("")
-		$("#cvv").val("");
+function fillCardInfo(cardNumber, name, expireMonth,expireYear, cvv ){
 	
-	}else{
 		$("#cardNumber").val(cardNumber);
-		let cardName = firstName + " " + lastName;
-		$("#cardName").val(cardName);
+		
+		$("#cardName").val(name);
 		$("#year").val(expireYear);
 		$("#month").val(expireMonth);
 		$("#cvv").val(cvv);
-	}
+	
 	
 	
 }
@@ -25,16 +18,12 @@ function fillCardInfo(cardNumber, firstName, lastName, expireYear, expireMonth, 
 
 //fill the default card info by choose checked info 
 $("#defaultCheckbox").click(function() {
-	console.log("listener check box !!!");
 	var paymentCard = [];
-	var firstName = $("#passFirstName").val();
-	var lastName =$("#passLastName").val();
-	console.log(firstName);
-	console.log(lastName);
+	
 	if($(this).is(":checked")){
 		$.get("bankInfo", function(back){
 			paymentCard = JSON.parse(back);
-			if(paymentCard != null){
+			if(paymentCard != null && paymentCard["cardNumber"] != null){
 				console.log(paymentCard);
 				let cardNumber = paymentCard['cardNumber'];
 				let expireMonth = paymentCard['expireMonth'];
@@ -42,16 +31,19 @@ $("#defaultCheckbox").click(function() {
 				let expireYear = paymentCard['expireYear'];
 				console.log(expireYear);
 				let cvv = paymentCard['cvv'];
+				let nameOnCard = paymentCard["nameOnTheCard"]
 				
-				fillCardInfo(cardNumber, firstName, lastName, expireYear, expireMonth, cvv)
+				fillCardInfo(cardNumber, nameOnCard, expireMonth, expireYear, cvv);
 			}else{
-				fillCardInfo("", "", "", "", "", "");
+				fillCardInfo("", "", "", "", "");
+				$("#defaultCard").text("Not Set Default Card Yet")
 			}
 			
 			
 		})
 	}else{
 		console.log("not check");
+		$("#defaultCard").text("")    //clear the error message
 		$("#cardNumber").val("");
 		$("#cardName").val("");
 		$("#year").val("");

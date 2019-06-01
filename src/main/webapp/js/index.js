@@ -44,7 +44,7 @@ $(function(){
 	
 
 
-	
+	//for index.jsp
 	if($("#passValue").val() != "" && $("#passValue").val() != null ){
 		
 		$(".resp-tab-content").css("display", "block");
@@ -59,6 +59,7 @@ $(function(){
      
         $(".resp-tab-content").css("display", "none");
         $("#rtnTime").val("");
+        
     })
     
     
