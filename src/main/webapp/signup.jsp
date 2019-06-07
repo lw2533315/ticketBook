@@ -49,7 +49,7 @@
 			<div class="header-grids">
 				<div class="logo">
 					<h1>
-						<a href="index.html"><span>Go</span>vihar</a>
+						<a href="index.html"><span>My</span>Ticket</a>
 					</h1>
 				</div>
 				<!--navbar-header-->
