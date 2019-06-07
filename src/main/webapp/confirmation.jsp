@@ -119,7 +119,7 @@
                        <th id="backTime"></th>
 					</tr>
 					<tr>
-					<th>Carbin</th>
+					<th>Cabin</th>
                        <th>${sessionScope.carbinLevel}</th>
                        <th id="backCarbin"></th>
 					</tr>

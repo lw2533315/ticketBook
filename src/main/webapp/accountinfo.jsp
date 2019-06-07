@@ -170,7 +170,7 @@ boolean  compareTime(String s) {
 								<span id="changedEmail"><strong><i>${member.email}</i></strong></span><br>
 								<br>
 								
-								<span><strong><i>Card Number: *${cardNumber }</i></strong></span><br>
+								<span><strong><i id="newCard">Card Number: *${cardNumber }</i></strong></span><br>
 								<strong><i><u><a  id="cardChange" style="font-size: 16px; color:blue ;" href=''>Update Bank Card</a></u></i></strong>
 								
 						
@@ -253,7 +253,7 @@ boolean  compareTime(String s) {
 									<th style = "width: 40%" class="tableflightinfo"  style="float: left"><b><%=airAndNo %></b></th>
 									<th  style = "width: 20%" class="tabledate"><b>Day</b></th>
 									<th  style = "width: 20%" class="tableName"><b>Name</b></th>
-									<th style = "width: 10%"  class="tableLevel"><b>Carbin</b></th>
+									<th style = "width: 10%"  class="tableLevel"><b>Cabin</b></th>
 									<th style = "width: 10%" class="tableprice"><b>Category</b></th>
 									
 								</tr>
@@ -295,9 +295,10 @@ boolean  compareTime(String s) {
 							<ul style="float: right; margin-right: 50px">
 							<li><h4><label><b>Total Price: </b>$<%=price %></label></h4></li>
 							<%if(compareTime(dptWholeTime)){ %>
-							     <li><h4><label><b>Refund: </b><input type="checkbox" value = "<%=lineId %>" class="ticketcancel"></label></h4></li>
+							      <li><h4><label><b title="you could get refund of 90% of ticket price, continue ?">Refund: </b><input type="checkbox" title="you could get refund of 90% of ticket price, continue ?" value = "<%=lineId %>" class="ticketcancel"></label></h4></li>
+							   
 							<%}else{ %>
-							     <li><h4><label><b>Refund: </b><input type="checkbox"  disabled= "disabled" ></label></h4></li>
+							     <li><h4><label><b title="cannot refund ">Refund: </b><input type="checkbox"  title="cannot refund " disabled= "disabled" ></label></h4></li>
 							
 							<%} %>
                             </ul>

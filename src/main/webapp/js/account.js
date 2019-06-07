@@ -53,7 +53,7 @@ $(function(){
 	//refund ticket and print out message
 	$(".ticketcancel").change(function(){
 		let id = $(this).val();
-		if(confirm("you could get refund of 90% of ticket price, continue ?")){
+		
 			$.get("returnTicket?id="+id, function(back){
 				$("#"+id).empty();
 				let price = parseInt(back);
@@ -63,9 +63,7 @@ $(function(){
 				let row = "<h5 class='error'>$" +parseInt(price * .9)+ " will refund to you card (ending with" + cardNumber+") in 5 business days</h5>"
 				$("#"+id).append(row);
 			})
-		}else{
-			$(this).attr("checked", false);
-		}
+		
 	})
 	
 	
@@ -102,16 +100,21 @@ $(function(){
 	//pop up a new window update bank card and back to the page
 	$("#updateCard").click(function(){
 		event.preventDefault();
+		let cn = false;
 		
 		let memberId = $("#memberId").val();
 		let cardNumber = $("#cardNumber").val();
+		
+		
 		let cardName = $("#cardName").val();
 		let cardMonth = $("#month").val();
 		let cardYear = $("#year").val();
 		let cardCvv = $("#cvv").val();
-		if(memberId == null || cardNumber == null || cardName == null || cardMonth == null || cardYear== null || cardCvv == null)
+		if(memberId != "" && /^[0-9]{16}$/.test(cardNumber) && /^[a-zA-Z\s]*$/.test(cardName) && (parseInt(cardMonth) >= 1 && parseInt(cardMonth) <= 12) && (parseInt(cardYear) > 2019 && parseInt(cardYear) < 2049) && /^[0-9]{3}$/i.test(cardCvv))
 			$.get("updateBankCard?memberId="+memberId+"&cardNumber="+cardNumber+"&cardName="+cardName+ "&month="+cardMonth+ "&year="+cardYear+ "&cvv=" + cardCvv, function(back){
 				$("#light").attr("style", "display: none");
+				console.log("fill")
+				$("#newCard").text("Card Number: *" + cardNumber.substring(12,16) );
 			})
 		else{
 			$("#emptyInput").text("InValid card info")
@@ -120,6 +123,7 @@ $(function(){
 	
 	//back to the origin layer
 	$("#cancelCard").click(function(){
+		event.preventDefault();
 		$("#light").attr("style", "display: none");
 	})
 	

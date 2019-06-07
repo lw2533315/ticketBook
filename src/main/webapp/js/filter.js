@@ -35,6 +35,7 @@ $(document). on('click',".button1", function(){
 		if($("#signinFlag").val() === "yes"){
 			window.location.href="home";
 		}else{
+			console.log("click button");
 			let ary = [];
 			let className = $(this).attr("id");
 			$("."+className).each(function(){
@@ -71,7 +72,7 @@ $(document). on('click',".button1", function(){
 			//add rtntime
 			url += ("&param"+(i+6) + "="+ $("#rtnTime1").val());
 			
-			
+			console.log(url);
 			window.location.href=url;
 		}
 })
@@ -111,7 +112,7 @@ function filter(){
 				let availableSeats = 1000;
 				
 				
-				let title = "<table id='flight" + i + "' class='tickettable' ></table>"  ;
+				let title = "<table id='flight" + i + "' class='tickettablebook' ></table>"  ;
 				div.append(title);
 				let totalPrice = 0;		
 					$.each(line, function(j, flight){   //index: flight

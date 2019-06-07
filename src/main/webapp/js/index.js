@@ -48,7 +48,15 @@ $(function(){
 	if($("#passValue").val() != "" && $("#passValue").val() != null ){
 		
 		$(".resp-tab-content").css("display", "block");
+		
+		$("#rtnTime1"). removeAttr("disabled")
+	}else{
+		  $("#rtnTime1"). attr("disabled", "disabled");
 	}
+	
+	
+	
+	
     $("#roundtrip").click(function(){
       
         $(".resp-tab-content").css("display", "block");
@@ -56,8 +64,9 @@ $(function(){
     })
 
     $("#onetrip").click(function(){
-     
+    	
         $(".resp-tab-content").css("display", "none");
+      
         $("#rtnTime").val("");
         
     })

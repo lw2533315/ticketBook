@@ -78,6 +78,7 @@ public class FlightController {
 		String rtnTime = req.getParameter("rtnTime");
 		String airline = req.getParameter("airline");
 		String stops = req.getParameter("stops");
+		
 		String carbinLevel = req.getParameter("carbinlevel");
 		System.out.println(flightFrom + "-" + flightTo + "-" + dptTime + "-" + rtnTime +"-"+ airline + "-"+ carbinLevel+ "-" +stops );
 		

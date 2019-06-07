@@ -98,51 +98,169 @@ seats = (Integer)request.getAttribute("seat");
 		</div>
 	</div>
 
-	<div class="banner">
+	<div class="bannerticket">
 		<!-- container -->
 		<div class="container">
 			
 			<div class="faqs-top-grids">
 				
 					<div class="contact-grids">
-						<div class="col-md-7 contact-para ">
+					   <div class="col-md-12 contact-map-ticket">
+                            <h3><b>Flight Information</b></h3>
+                            <div class="map">
+                                
+                                  
+                                            
+                                            <!-- <h2 class="top">Flight Info</h2> -->
+                                            <div class="div_pad_1_1"> 
+                                                <div class="reservation newbackground">
+                                                
+                                                    <ul class="reservation" >
+                                                                                                 
+                                                            <li class="span1_of_1  adult">
+                                                                  <span id="seatNoice" class="error"></span>
+                                                                 <h6 style="width: 70px"><b>Adult</b></h6>
+                                                                 
+                            
+                                                                 <div class="section_room">
+                                                                        <select id="adultNo"  class="frm-field required">
+                                                                            
+                                                                            <option value="1">1</option>    
+                                                                            <option value="2">2</option>
+                                                                            <option value="3">3</option>         
+                                                                            <option value="4">4</option>
+                                                                            <option value="5">5</option>   
+                                                                                      
+                                                                            
+                                                                        </select>
+                                                                 </div> 
+                                                            </li>
+                                                            <li class="span1_of_1  children">
+                                                                 <h6 style="color:black; width: 70px"><b>Child</b></h6>
+                                                                
+                                                                 <div class="section_room">
+                                                                        <select id="childNo"  class="frm-field required">
+                                                                                
+                                                                            <option value="0">0</option>
+                                                                            <option value="1">1</option>         
+                                                                            <option value="2">2</option>
+                                                                            <option value="3">3</option>         
+                                                                            <option value="4">4</option>
+                                                                            <option value="5">5</option>         
+                                                                            
+                                                                            
+                                                                        </select>
+                                                                 </div> 
+                                                            </li> 
+                                                            <li>
+                                                                <h6 style="margin-left: 20px; " ><b>Carbin</b></h6> 
+                                                                <span style = "margin-left: 20px ;width: 100px; font-size: 16px; color:white" id="displayCarbin"><%=carbinLevel %></span>
+                                                                <!-- <input type="text" style="height: 37px; color:black; width: 100px" value ="<%=carbinLevel %>"  readonly="readonly" id="displayCarbin"> -->
+                                                            </li>
+                                                            <li>
+                                                                <h6 style="margin-left: 50px"><b>Price</b></h6>
+                                                                <span style = "margin-left: 50px; font-size: 16px; color:white" id="displayPrice">$<%=adultPrice %></span>
+                                                                <!--  <input type="text" style="height: 37px; color:black; width: 100px" value ="$<%=adultPrice %>"  readonly="readonly" id="displayPrice">-->
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    
+                                                    <table class="tickettable1_1_tiket">
+                                                    <%for(int i = 0; i < line.size(); i++){ 
+                                                           String company = line.get(i).getFlightCompany();
+                                                           String flightId = line.get(i).getFlightId();
+                                                           String dptBrief = line.get(i).getDepartureCityBrief();
+                                                           String arvBrief = line.get(i).getArriveCityBrief();
+                                                           String dptCity = line.get(i).getDepartureCity();
+                                                           String arvCity = line.get(i).getArriveCity();
+                                                           String dptTime = line.get(i).getDepartureTime();
+                                                           String arvTime = line.get(i).getArriveTime();
+                                                           String comAndId = company+" & "+ flightId;
+                                                    %>
+                                                            <tr>
+                                                                <td style="margin-bottom: 10px;"><b><%=comAndId%></b></td>
+                                                                
+                                                              <!--   <td class="tableright"><b>price</b></td> -->
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td><table class="innertable ticketinfo">
+                                                                    <tr>
+                                                                        <td style="margin-bottom: 10px;">Departure information</td>
+                                                                        <td ></td>
+                                                                        <td style="margin-bottom: 10px;">Arrival information</td>
+                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                            <td class="dpttime"><%=dptTime %></td>
+                                                                            <td></td>
+                                                                            <td class="arvtime"><%=arvTime %></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                            <td class="dptport"><%=dptBrief %></td>
+                                                                            <td></td>
+                                                                            <td class="arvport"><%=arvBrief %></td>
+                                
+                                                                    </tr>
+                                                                    <tr>
+                                                                         <td class="dptcity"><%=dptCity %></td>
+                                                                         <td></td>
+                                                                         <td class="arvcity"><%=arvCity %></td>
+                                                                    </tr>
+                                                                    </table>
+                                                                </td>
+                                                               <!--  <td>$249</td> -->
+                                                            </tr>
+                                
+                                                           <%} %>
+                                                        </table>
+                                                        
+                                               
+                                                
+                                            </div>
+                                            
+                                       
+                            </div>
+                        </div>
+                    </div>
+						<div class="col-md-12 contact-para ">
 							 
-							<h2><b>Personal Information</b> </h2>
+							<h2 class="personal "><b>Personal Information</b> </h2>
 							<br>
 				 	 	
 							<form action="payment"  method="post" class="formValidate" >
-							<div class= "overflowDiv"  >
-							         
-							         <h5 style="color:#3333CC; font-size:22px">the 1st passenger</h5>
+							<!-- <div class= "overflowDiv"  > -->
+							 <div class="passengerinfo">        
+							         <h5 style="color: #CD853F;font-size:22px">the 1st passenger</h5>
 							         
 								
 										<p class="cofirminfo">First Name</p>		
-										<input  type="text" name ='firstName' value="" />						
+										<input class="mywidth"  type="text" name ='firstName' value="" />						
 									
 									
 										<p class="cofirminfo">Last Name</p>		
-										<input type="text" name ='lastName' value="" />						
+										<input class="mywidth" type="text" name ='lastName' value="" />						
 								
 							
 									
 									<p class="cofirminfo">Email</p>						
-										<input type="text" name ='email' value="" />							
+										<input class="mywidth" type="text" name ='email' value="" />							
 								
 												
 									<p class="cofirminfo">Phone</p>						
-										<input type="text" name ='phone' value="" />							
+										<input class="mywidth" type="text" name ='phone' value="" />							
 									
 									
 									
-                                    <p class="cofirminfo">Gender</p>   
-                                    <select name = "gender" style="width: 165px; color:black; font-size: 15px ">
+                                    <p class="cofirminfo ">Gender</p>   
+                                    <select class="mywidth" name = "gender" style="color:black; font-size: 15px ">
                                         <option style= "color:black; font-size: 15px" value ="female">Female</option>
                                         <option style= "color:black; font-size: 15px" value="male">Male</option>
                                     </select>                  
                                        <!--   <input type="text" name ='gender' value="" />   -->                       
                                                
                                     <p class="cofirminfo">Age</p>                     
-                                        <input type="text" name ='age' value="" />                          
+                                        <input class="mywidth" type="text" name ='age' value="" />                          
                                  
 								
 									<div id="removePoint">
@@ -162,119 +280,7 @@ seats = (Integer)request.getAttribute("seat");
 							</form>
 							
 						</div>
-						<div class="col-md-5 contact-map">
-                            <h5><b>Flight Informatino</b></h5>
-							<div class="map">
-								
-                                  
-                                            
-                                            <!-- <h2 class="top">Flight Info</h2> -->
-                                            <div class="div_pad_1_1"> 
-												<div class="reservation newbackground">
-												
-													<ul class="reservation" >
-                                                                                                 
-															<li class="span1_of_1  adult">
-															      <span id="seatNoice" class="error"></span>
-																 <h6 style="width: 70px"><b>Adult</b></h6>
-																 
-							
-																 <div class="section_room">
-																		<select id="adultNo"  class="frm-field required">
-																			
-																			<option value="1">1</option>    
-																			<option value="2">2</option>
-																			<option value="3">3</option>         
-																			<option value="4">4</option>
-																			<option value="5">5</option>   
-																					  
-																			
-																		</select>
-																 </div>	
-															</li>
-															<li class="span1_of_1  children">
-																 <h6 style="color:black; width: 70px"><b>Child</b></h6>
-															    
-																 <div class="section_room">
-																		<select id="childNo"  class="frm-field required">
-																				
-																			<option value="0">0</option>
-																			<option value="1">1</option>         
-																			<option value="2">2</option>
-																			<option value="3">3</option>         
-																			<option value="4">4</option>
-																			<option value="5">5</option>         
-																			
-																			
-																		</select>
-																 </div>	
-															</li> 
-															<li>
-                                                                <h6 style="margin-left: 20px; " ><b>Carbin</b></h6> 
-                                                                <span style = "margin-left: 20px ;width: 100px; font-size: 16px; color:white" id="displayCarbin"><%=carbinLevel %></span>
-                                                                <!-- <input type="text" style="height: 37px; color:black; width: 100px" value ="<%=carbinLevel %>"  readonly="readonly" id="displayCarbin"> -->
-                                                            </li>
-															<li>
-																<h6 style="margin-left: 50px"><b>Price</b></h6>
-																<span style = "margin-left: 50px; font-size: 16px; color:white" id="displayPrice">$<%=adultPrice %></span>
-																<!--  <input type="text" style="height: 37px; color:black; width: 100px" value ="$<%=adultPrice %>"  readonly="readonly" id="displayPrice">-->
-															</li>
-														</ul>
-													</div>
-													
-                                                	<table class="tickettable1_1">
-                                                	<%for(int i = 0; i < line.size(); i++){ 
-                                                		   String company = line.get(i).getFlightCompany();
-                                                		   String flightId = line.get(i).getFlightId();
-                                                		   String dptBrief = line.get(i).getDepartureCityBrief();
-                                                		   String arvBrief = line.get(i).getArriveCityBrief();
-                                                		   String dptCity = line.get(i).getDepartureCity();
-                                                		   String arvCity = line.get(i).getArriveCity();
-                                                		   String dptTime = line.get(i).getDepartureTime();
-                                                		   String arvTime = line.get(i).getArriveTime();
-                                                		   String comAndId = company+" & "+ flightId;
-                                                	%>
-                                                            <tr>
-                                                                <td class="tableleft"><b><%=comAndId%></b></td>
-                                                                
-                                                              <!--   <td class="tableright"><b>price</b></td> -->
-                                                                
-                                                            </tr>
-                                                            <tr>
-                                                                <td><table class="innertable ticketinfo">
-                                                                    <tr>
-																			<td class="dpttime"><%=dptTime %></td>
-																			<td></td>
-                                                                            <td class="arvtime"><%=arvTime %></td>
-                                                                    </tr>
-                                                                    <tr>
-																			<td class="dptport"><%=dptBrief %></td>
-																			<td>To</td>
-                                                                            <td class="arvport"><%=arvBrief %></td>
-                                
-                                                                    </tr>
-                                                                    <tr>
-																		 <td class="dptcity"><%=dptCity %></td>
-																		 <td></td>
-                                                                         <td class="arvcity"><%=arvCity %></td>
-                                                                    </tr>
-                                                                    </table>
-                                                                </td>
-                                                               <!--  <td>$249</td> -->
-                                                            </tr>
-                                
-                                                           <%} %>
-														</table>
-														
-                                               
-                                                
-                                            </div>
-                                            
-                                       
-							</div>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
+						
 			</div>
 		</div>
 		<!-- //container -->

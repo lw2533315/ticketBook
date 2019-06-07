@@ -7,12 +7,27 @@
 	background:transparent;
 	
 }
+
+.col1book {
+    padding-left:37px;
+   
+    background:transparent;
+    
+}
 .col1_1{
 	color:transparent;
 }
 .col2 {
 	padding-left:42px;
 	width:557px
+}
+.col2book {
+    padding-left:42px;
+    
+}
+
+.inputbook{
+	height:40px;
 }
 .cols {
 	width:263px

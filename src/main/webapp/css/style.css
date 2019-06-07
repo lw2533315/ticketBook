@@ -62,9 +62,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 .cofirminfo{
 
-	color: #660099;
+	/*color: #660099;*/
+	color:#CD853F;
 	font-size: 18px;
+	font-weight: bold;
 	
+}
+
+
+
+.personal{
+	margin-top:80px;
 }
 .checkouthtml{
 	height: 100%;
@@ -90,12 +98,28 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	/* border: 1px solid ; */
 	color:rgba(228, 211, 211, 0.911);
 }
+
+.tickettablebook{
+    text-align:left;
+    margin-left:20px;
+    width: 90%;
+    /* border: 1px solid ; */
+    color:rgba(228, 211, 211, 0.911);
+}
 .tickettable1_1{
 	margin-left:20px;
 	text-align:left;
 	width: 420px;
 	/* color: rgba(20, 18, 18, 0.918); */
 	color: rgba(228, 211, 211, 0.911);
+}
+
+.tickettable1_1_tiket{
+    margin-left:20px;
+    text-align:left;
+    width: 900px;
+    /* color: rgba(20, 18, 18, 0.918); */
+    color: rgba(228, 211, 211, 0.911);
 }
 
 .tickettable1_account{
@@ -181,6 +205,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	overflow:auto;
 	background:rgba(0, 0, 0, 0.57);
 }
+
+
+.div_pad_book{
+    height:800px;
+    
+    overflow:auto;
+    background:rgba(0, 0, 0, 0.57);
+}
+
+
 .div_pad_3{
 	height:330px;
 	
@@ -546,6 +580,17 @@ input:focus {
     background-size: cover;
 	padding: 2em 0;
 	height:600px;
+}
+
+.mywidth{
+	width:500px;
+	margin-bottom:15px;
+}
+
+.bannerticket{
+    background: url(../images/flightback.jpg) no-repeat 0px 0px;
+    background-size: cover;
+    padding: 2em 0;
 }
 .offer{
     margin: 1em 0 0 0;
@@ -1796,6 +1841,15 @@ ul#flexiselDemo1 li a h4:hover{
     color: #2C302F;
     font-weight: 600;
 }
+
+.contact-map-ticket{
+	margin: 0 0 1em 0;
+    font-size: 25px;
+    color: #2C302F;
+    font-weight: 600;
+}
+
+
 .contact-map h5 {
     margin: 0 0 1em;
 }
