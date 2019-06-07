@@ -68,7 +68,7 @@
 				<div class="top-nav">
 					<span class="menu"><img src="images/menu.png" alt="" /></span>
 					<ul class="nav1">
-						<li><a href="index.html">Home</a></li>
+						<li><a href="home">Home</a></li>
 
 					</ul>
 					<div class="clearfix"></div>
