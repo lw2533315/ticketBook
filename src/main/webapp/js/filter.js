@@ -167,7 +167,7 @@ function filter(){
 					}
 				div.append(outRow);
 				if(availableSeats < 5){
-					let value = "< " + availableSeats;
+					let value = "<= " + availableSeats;
 					let outRow2 = "<button style='float: right; margin-left: 20px; width: 80px' id='id"+i+"' class='button1'>" +value+"</button>";
 					div.append(outRow2);
 				}else if(availableSeats < 15 ){

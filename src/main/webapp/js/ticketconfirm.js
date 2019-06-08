@@ -23,6 +23,7 @@ $(function(){
 		if(totalSeats > availableSeats){
 			$("#seatNotice").text("no enough seats") // notice
 			$("#submitPassagers").click(function(){
+				$("#notickets").text("no enough tickets available")
 				return false;    // stop jump
 			})
 		}

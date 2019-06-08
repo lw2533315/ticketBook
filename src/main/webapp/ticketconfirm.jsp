@@ -272,6 +272,8 @@ seats = (Integer)request.getAttribute("seat");
 										    <input type = "hidden" value = "$<%=adultPrice%>"  name="adultPrice" id = "passPrice"/>
 										    <input type = "hidden" value = "$<%=childPrice%>"  name="childPrice" id = "passPrice"/>
 											<input type="submit" value="Confirm"  id="submitPassagers" >
+											<span id="notickets" class="error"></span>
+											<br><br>
 										</div>
 									
 									</div>
